@@ -7,27 +7,36 @@ body {
 #calculator {
     border: 1px black solid;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
     width: 300px;
     height: 500px;
     padding: 30px;
 }
 
+#display {
+    width: 300px;
+    height: 100px;
+    background-color: lightgray;
+    
+}
+
 #button-container {
-    height: 200px;
+    height: 300px;
     display: flex;
     justify-content: space-between;
     align-content: center;
     flex-wrap: wrap;
     align-self: end;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 button {
-    font-size: 20px;
-    width: 70px;
-    height: 35px;
-    margin-bottom: 20px;
+    font-size: 15px;
+    width: 65px;
+    height: 65px;
+    margin-bottom: 10px;
 }
 
 button.equals {
