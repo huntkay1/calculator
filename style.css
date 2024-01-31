@@ -20,13 +20,14 @@ body {
     height: 100px;
     background-color: lightgray;
     display: flex;
-    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 #display-contents {
     font-size: 30px;
-    align-self: end;
-    margin-right: 10px;
 }
 
 #button-container {
