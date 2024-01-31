@@ -26,10 +26,12 @@ function multiply(array) {
     return array.reduce((total, num) => total * num)
 }
 
+//Perfoms proper calcuation based on operator given
 function operate(num1, num2, operator) {
     switch (operator) {
         case "+":
-            display.innerHTML = add([num1, num2]);
+            displayValue = (display.innerHTML = add([num1, num2]));
+            
             break;
         
         case "-":
@@ -50,7 +52,8 @@ function operate(num1, num2, operator) {
 //Display the button's number on the display when clicked 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
-        display.innerHTML += button.textContent;
+        let num = button.textContent;
+        display.innerHTML += num;
         displayValue = display.innerHTML;
     });
 }); 
@@ -67,22 +70,29 @@ dltButton.addEventListener('click', () => {
     displayValue = display.innerHTML;
 })
 
-//Displays operator and collects first number before operator
+//Displays operator. Operator button acts as equals button if clicked a second time
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
         if (!displayValue.includes(operator)) { 
-            display.innerHTML += button.textContent;
             operator = button.textContent;
+            displayValue = (display.innerHTML += operator); 
+        } else {
+            num1 = parseInt(display.innerHTML.slice(0, -1));
+            index = displayValue.indexOf(operator);
+            num2 = parseInt(displayValue.slice(index +1));
+            operate(num1, num2, operator);
+            operator = button.textContent;
+            display.innerHTML += operator;
             displayValue = display.innerHTML;
-            num1 = parseInt(display.innerHTML.slice(0, -1)); 
         }
     })
 })
 
 //Collects second number and sends values to be calculated
 equalButton.addEventListener('click', () => {
+   num1 = parseInt(display.innerHTML.slice(0, -1));
    index = displayValue.indexOf(operator);
-   num2 = parseInt(displayValue.slice(index +1));
+   num2 = parseInt(displayValue.slice(index + 1));
    operate(num1, num2, operator);
    displayValue = display.innerHTML;
 })
