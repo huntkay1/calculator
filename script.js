@@ -35,18 +35,26 @@ function operate(num1, num2, operator) {
     }
 }
 
-//Display the button's number on the display when clicked 
+
+const display = document.querySelector("#display-contents");
 const numButtons = [...document.querySelectorAll(".num")];
 const clearButton = document.querySelector("#clear");
-const display = document.querySelector("#display-contents");
+const dltButton = document.querySelector("#delete");
 
+//Display the button's number on the display when clicked 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         display.innerHTML += button.textContent;
     });
 }); 
 
+//Clear display when clicked
 clearButton.addEventListener('click', () => display.innerHTML = "");
+
+//Delete last number when clicked
+dltButton.addEventListener('click', () => {
+    display.innerHTML = display.innerHTML.slice(0, -1);
+})
 
 
 let num1
