@@ -59,7 +59,6 @@ numButtons.forEach(button => {
 clearButton.addEventListener('click', () => {
     display.innerHTML = "";
     displayValue = display.innerHTML;
-    operator = "";
 });
 
 //Delete last number when clicked
@@ -71,17 +70,21 @@ dltButton.addEventListener('click', () => {
 //Displays operator and collects first number before operator
 operatorButtons.forEach(button => {
     button.addEventListener('click', () => {
-        display.innerHTML += button.textContent;
-        operator = button.textContent;
-        displayValue = display.innerHTML;
-        num1 = parseInt(display.innerHTML.slice(0, -1)); 
+        if (!displayValue.includes(operator)) { 
+            display.innerHTML += button.textContent;
+            operator = button.textContent;
+            displayValue = display.innerHTML;
+            num1 = parseInt(display.innerHTML.slice(0, -1)); 
+        }
     })
 })
 
+//Collects second number and sends values to be calculated
 equalButton.addEventListener('click', () => {
    index = displayValue.indexOf(operator);
    num2 = parseInt(displayValue.slice(index +1));
    operate(num1, num2, operator);
+   displayValue = display.innerHTML;
 })
 
 
