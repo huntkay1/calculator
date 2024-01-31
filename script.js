@@ -36,14 +36,17 @@ function operate(num1, num2, operator) {
 }
 
 //Display the button's number on the display when clicked 
-let numButtons = [...document.querySelectorAll(".num")];
-let display = document.querySelector("#display-contents")
+const numButtons = [...document.querySelectorAll(".num")];
+const clearButton = document.querySelector("#clear");
+const display = document.querySelector("#display-contents");
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         display.innerHTML += button.textContent;
     });
 }); 
+
+clearButton.addEventListener('click', () => display.innerHTML = "");
 
 
 let num1
