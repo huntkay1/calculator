@@ -1,3 +1,15 @@
+let num1;
+let num2;
+let operator;
+let displayValue;
+
+const display = document.querySelector("#display-contents");
+const numButtons = [...document.querySelectorAll(".num")];
+const clearButton = document.querySelector("#clear");
+const dltButton = document.querySelector("#delete");
+const operatorButtons = [...document.querySelectorAll(".operator")];
+const equalButton = document.querySelector(".equals");
+
 function add(array) {
     return array.reduce((total, num) => total + num, 0)
 };
@@ -16,48 +28,63 @@ function multiply(array) {
 
 function operate(num1, num2, operator) {
     switch (operator) {
-        case "add":
-            console.log (add([num1, num2]));
+        case "+":
+            display.innerHTML = add([num1, num2]);
             break;
         
-        case "sub":
-            console.log (subtract([num1, num2]));
+        case "-":
+            display.innerHTML = subtract([num1, num2]);
             break;
         
-        case "div":
-            console.log (divide([num1, num2]));
+        case "/":
+            display.innerHTML = divide([num1, num2]);
             break;
         
-        case "mul":
-            console.log (multiply([num1, num2]));
+        case "*":
+            display.innerHTML = multiply([num1, num2]);
             break;
 
     }
 }
 
-
-const display = document.querySelector("#display-contents");
-const numButtons = [...document.querySelectorAll(".num")];
-const clearButton = document.querySelector("#clear");
-const dltButton = document.querySelector("#delete");
-
 //Display the button's number on the display when clicked 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         display.innerHTML += button.textContent;
+        displayValue = display.innerHTML;
     });
 }); 
 
 //Clear display when clicked
-clearButton.addEventListener('click', () => display.innerHTML = "");
+clearButton.addEventListener('click', () => {
+    display.innerHTML = "";
+    displayValue = display.innerHTML;
+    operator = "";
+});
 
 //Delete last number when clicked
 dltButton.addEventListener('click', () => {
     display.innerHTML = display.innerHTML.slice(0, -1);
+    displayValue = display.innerHTML;
+})
+
+//Displays operator and collects first number before operator
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        display.innerHTML += button.textContent;
+        operator = button.textContent;
+        displayValue = display.innerHTML;
+        num1 = parseInt(display.innerHTML.slice(0, -1)); 
+    })
+})
+
+equalButton.addEventListener('click', () => {
+   index = displayValue.indexOf(operator);
+   num2 = parseInt(displayValue.slice(index +1));
+   operate(num1, num2, operator);
 })
 
 
-let num1
-let num2
-let operator
+
+
 
