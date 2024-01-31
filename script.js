@@ -35,13 +35,13 @@ function operate(num1, num2, operator) {
     }
 }
 
-let buttons = document.querySelectorAll("button");
-buttonsArray = [...buttons];
-let displayContent = document.querySelector("#display-contents")
+//Display the button's number on the display when clicked 
+let numButtons = [...document.querySelectorAll(".num")];
+let display = document.querySelector("#display-contents")
 
-buttonsArray.forEach(button => {
+numButtons.forEach(button => {
     button.addEventListener('click', () => {
-        displayContent.innerHTML = button.textContent;
+        display.innerHTML += button.textContent;
     });
 }); 
 
