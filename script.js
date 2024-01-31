@@ -35,6 +35,17 @@ function operate(num1, num2, operator) {
     }
 }
 
+let buttons = document.querySelectorAll("button");
+buttonsArray = [...buttons];
+let displayContent = document.querySelector("#display-contents")
+
+buttonsArray.forEach(button => {
+    button.addEventListener('click', () => {
+        displayContent.innerHTML = button.textContent;
+    });
+}); 
+
+
 let num1
 let num2
 let operator
