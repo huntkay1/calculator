@@ -2,6 +2,7 @@ let num1;
 let num2;
 let operator;
 let displayValue;
+let newCalc = false;
 
 const display = document.querySelector("#display-contents");
 const numButtons = [...document.querySelectorAll(".num")];
@@ -11,7 +12,7 @@ const operatorButtons = [...document.querySelectorAll(".operator")];
 const equalButton = document.querySelector(".equals");
 
 function add(array) {
-    return array.reduce((total, num) => total + num, 0)
+    return array.reduce((total, num) => total + num, 0);
 };
 
 function subtract(array) {
@@ -31,19 +32,22 @@ function operate(num1, num2, operator) {
     switch (operator) {
         case "+":
             displayValue = (display.innerHTML = add([num1, num2]));
-            
+            newCalc = true;
             break;
         
         case "-":
             display.innerHTML = subtract([num1, num2]);
+            newCalc = true;
             break;
         
         case "/":
             display.innerHTML = divide([num1, num2]);
+            newCalc = true;
             break;
         
         case "*":
             display.innerHTML = multiply([num1, num2]);
+            newCalc = true;
             break;
 
     }
@@ -53,8 +57,15 @@ function operate(num1, num2, operator) {
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         let num = button.textContent;
-        display.innerHTML += num;
-        displayValue = display.innerHTML;
+        if (newCalc === true && displayValue.includes(operator) === false) {
+            display.innerHTML = "";
+            display.innerHTML += num;
+            displayValue = display.innerHTML;
+            newCalc = false;
+        } else {
+            display.innerHTML += num;
+            displayValue = display.innerHTML;
+        }
     });
 }); 
 
