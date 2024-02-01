@@ -3,6 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #b0b3b8;
 }
 
 #calculator {
@@ -14,12 +15,14 @@ body {
     width: 300px;
     height: 500px;
     padding: 30px;
+    border-radius: 15px;
+    background-color: #101518;
 }
 
 #display {
     width: 300px;
     height: 100px;
-    background-color: lightgray;
+    background-color: #f5f5f5;
     display: flex;
     justify-content: end;
     align-items: center;
@@ -29,10 +32,12 @@ body {
 
 #display-contents {
     font-size: 30px;
+    font-family: monospace;
 }
 
 #button-container {
-    height: 300px;
+    height: 320px;
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -46,9 +51,34 @@ button {
     width: 65px;
     height: 65px;
     margin-bottom: 10px;
+    border-radius: 50px;
+    border: #101518;
+    font-family: Helvetica;
 }
 
-button.equals {
-    
+.equals {
     width: 144px;
+}
+
+.num, .operator, .equals{
+    font-size: 28px;
+}
+
+.num, #point {
+    background-color: #f2f2f2;
+}
+
+.operator, .equals {
+    background-color: #ee9f27;
+}
+
+#point {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+#clear, #delete, #plusMinus {
+    background-color: #404040;
+    color: #f2f2f2;
+    font-size: 18px;
 }

@@ -48,6 +48,7 @@ function operate(num1, num2, operator) {
             //cant divide by 0
             if (num2 === 0) {
                 display.innerHTML = "yeah right, loser";
+                newCalc = true;
             } else {
                 display.innerHTML = divide([num1, num2]);
                 newCalc = true;
