@@ -12,6 +12,7 @@ const dltButton = document.querySelector("#delete");
 const operatorButtons = [...document.querySelectorAll(".operator")];
 const equalButton = document.querySelector(".equals");
 const plusMinusButton = document.querySelector("#plusMinus");
+const pointButton = document.querySelector("#point");
 
 //Functions that perform operations
 function add(array) {
@@ -103,7 +104,7 @@ operatorButtons.forEach(button => {
     })
 })
 
-//Collects second number and sends values to be calculated
+//Collects numbers and sends them to be calculated
 equalButton.addEventListener('click', () => {
    num1 = parseInt(display.innerHTML.slice(0, -1));
    index = displayValue.indexOf(operator);
@@ -123,6 +124,20 @@ plusMinusButton.addEventListener('click', () => {
         display.innerHTML = display.innerHTML.slice(1);
         displayValue = display.innerHTML;
     }
+})
+
+//Add a point to the number if it doesn't already contain one
+pointButton.addEventListener('click', () => {
+    const numbers = displayValue.split(operator);
+
+    // Get the last number (either num1 or num2)
+    const lastNumber = numbers[numbers.length - 1];
+
+    // Check if the last number already contains a dot
+    if (!lastNumber.includes('.')) {
+        // If no dot is present, add a dot to the last number
+        display.innerHTML += '.';
+        displayValue = display.innerHTML; }
 })
 
 
