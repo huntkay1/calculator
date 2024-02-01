@@ -45,8 +45,14 @@ function operate(num1, num2, operator) {
             break;
         
         case "/":
-            display.innerHTML = divide([num1, num2]);
-            newCalc = true;
+            //cant divide by 0
+            if (num2 === 0) {
+                display.innerHTML = "yeah right, loser";
+            } else {
+                display.innerHTML = divide([num1, num2]);
+                newCalc = true;
+            }
+
             break;
         
         case "*":
