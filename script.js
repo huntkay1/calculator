@@ -3,6 +3,7 @@ let num2;
 let operator;
 let displayValue;
 let newCalc = false;
+let plusMinus = false;
 
 const display = document.querySelector("#display-contents");
 const numButtons = [...document.querySelectorAll(".num")];
@@ -10,7 +11,9 @@ const clearButton = document.querySelector("#clear");
 const dltButton = document.querySelector("#delete");
 const operatorButtons = [...document.querySelectorAll(".operator")];
 const equalButton = document.querySelector(".equals");
+const plusMinusButton = document.querySelector("#plusMinus");
 
+//Functions that perform operations
 function add(array) {
     return array.reduce((total, num) => total + num, 0);
 };
@@ -54,6 +57,7 @@ function operate(num1, num2, operator) {
 }
 
 //Display the button's number on the display when clicked 
+//First checks to see if a new calculation is being made. If so, the displayValue is cleared. 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         let num = button.textContent;
@@ -106,6 +110,19 @@ equalButton.addEventListener('click', () => {
    num2 = parseInt(displayValue.slice(index + 1));
    operate(num1, num2, operator);
    displayValue = display.innerHTML;
+})
+
+//Adds negative sign if clicked and removes it when clicked again
+plusMinusButton.addEventListener('click', () => {
+    plusMinus = !plusMinus; 
+
+    if (plusMinus) {
+        display.innerHTML = "-" + display.innerHTML;
+        displayValue = display.innerHTML;
+    } else if (!plusMinus){
+        display.innerHTML = display.innerHTML.slice(1);
+        displayValue = display.innerHTML;
+    }
 })
 
 
